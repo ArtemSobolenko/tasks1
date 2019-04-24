@@ -40,7 +40,7 @@ public class Menu {
                 e.printStackTrace();
             }
         } while (isRun());
-        Collections.sort(triangleList);
+        Collections.sort(triangleList, new TriangleAreaComparator());
         triangleService.printTriangles(triangleList);
     }
 

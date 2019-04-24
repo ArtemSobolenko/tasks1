@@ -9,10 +9,10 @@ public class Utils {
         try {
             intParam = Integer.parseInt(param);
             if (intParam <= 0) {
-                throw new AppException("The parameter must be greater than zero.!");
+                throw new AppException("The parameter must be greater than zero!");
             }
         } catch (NumberFormatException e) {
-            throw new AppException("The parameter must be an integer.!");
+            throw new AppException("The parameter must be an integer!");
         }
         return intParam;
     }
@@ -21,11 +21,11 @@ public class Utils {
         double doubleParam;
         try {
             doubleParam = Double.parseDouble(param);
-            if (doubleParam <= 1) {
-                throw new AppException("The parameter must be greater than one.!");
+            if (doubleParam <= 0) {
+                throw new AppException("The parameter must be greater than zero!");
             }
         } catch (NumberFormatException e) {
-            throw new AppException("The parameter must be an integer or double.!");
+            throw new AppException("The parameter must be an integer or double!");
         }
         return doubleParam;
     }

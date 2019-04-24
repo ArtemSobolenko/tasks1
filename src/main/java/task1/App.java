@@ -10,8 +10,8 @@ public class App {
     private static final Validator validator = new Validator();
     private static final Utils utils = new Utils();
 
-    private static final int paramOne = 0;
-    private static final int paramTwo = 1;
+    private static final int indexForparamOne = 0;
+    private static final int indexForparamTwo = 1;
 
     public static void main(String[] args) {
 
@@ -20,8 +20,8 @@ public class App {
                     "\nAnd they must be positive integers.");
         } else {
             try {
-                ChessDesk chessDesk = chessDeskService.createChessDesk(utils.getIntegerFromParam(args[paramOne]),
-                        utils.getIntegerFromParam(args[paramTwo]));
+                ChessDesk chessDesk = chessDeskService.createChessDesk(utils.getIntegerFromParam(args[indexForparamOne]),
+                        utils.getIntegerFromParam(args[indexForparamTwo]));
                 ConsoleHelper.print(chessDeskService.getChessDeskLikeString(chessDesk));
             } catch (AppException e) {
                 e.printStackTrace();

@@ -1,6 +1,6 @@
 package task3;
 
-public class Triangle implements Comparable<Triangle> {
+public class Triangle {
     private String name;
     private double sideA;
     private double sideB;
@@ -30,15 +30,8 @@ public class Triangle implements Comparable<Triangle> {
         this.area = area;
     }
 
-    @Override
-    public int compareTo(Triangle o) {
-        if (o.area > this.area) {
-            return 1;
-        } else if (o.area < this.area) {
-            return -1;
-        } else {
-            return 0;
-        }
+    public double getArea() {
+        return area;
     }
 
     @Override
