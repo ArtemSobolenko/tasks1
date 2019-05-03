@@ -8,24 +8,24 @@ public class App {
 
     private static final ChessDeskService chessDeskService = new ChessDeskService();
     private static final Validator validator = new Validator();
-    private static final Utils utils = new Utils();
 
-    private static final int indexForparamOne = 0;
-    private static final int indexForparamTwo = 1;
+    private static final int indexForParamOne = 0;
+    private static final int indexForParamTwo = 1;
 
     public static void main(String[] args) {
 
-        if (!validator.isValidNumberOfArguments(args)) {
-            ConsoleHelper.print("You need run the application with two parameters: 1 - width, 2 - height." +
-                    "\nAnd they must be positive integers.");
-        } else {
+        if (validator.isValidNumberOfArguments(args)) {
             try {
-                ChessDesk chessDesk = chessDeskService.createChessDesk(utils.getIntegerFromParam(args[indexForparamOne]),
-                        utils.getIntegerFromParam(args[indexForparamTwo]));
+                int width = Utils.getIntegerFromParam(args[indexForParamOne]);
+                int height = Utils.getIntegerFromParam(args[indexForParamTwo]);
+                ChessDesk chessDesk = chessDeskService.createChessDesk(width, height);
                 ConsoleHelper.print(chessDeskService.getChessDeskLikeString(chessDesk));
             } catch (AppException e) {
-                e.printStackTrace();
+                ConsoleHelper.print("The parameter must be an integer and greater than zero!\n" + e);
             }
+        } else {
+            ConsoleHelper.print("You need run the application with two parameters: 1 - width, 2 - height." +
+                    "\nAnd they must be positive integers.");
         }
     }
 }

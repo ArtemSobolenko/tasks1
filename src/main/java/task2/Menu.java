@@ -6,11 +6,9 @@ import utils.Utils;
 
 public class Menu {
 
-    private Utils utils;
     private EnvelopeService envelopeService;
 
-    public Menu(Utils utils, EnvelopeService envelopeService) {
-        this.utils = utils;
+    public Menu(EnvelopeService envelopeService) {
         this.envelopeService = envelopeService;
     }
 
@@ -20,19 +18,19 @@ public class Menu {
         do {
             try {
                 ConsoleHelper.print("Enter sideA for first envelope...");
-                double sideA = utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
+                double sideA = Utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
                 ConsoleHelper.print("Enter sideB for first envelope...");
-                double sideB = utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
+                double sideB = Utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
                 envelopeOne = envelopeService.createEnvelope(sideA, sideB);
 
                 ConsoleHelper.print("Enter sideA for second envelope...");
-                double sideC = utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
+                double sideC = Utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
                 ConsoleHelper.print("Enter sideB for second envelope...");
-                double sideD = utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
+                double sideD = Utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
                 envelopeTwo = envelopeService.createEnvelope(sideC, sideD);
                 envelopeService.compareEnvelopes(envelopeOne, envelopeTwo);
             } catch (AppException e) {
-                e.printStackTrace();
+                ConsoleHelper.print("Exception:\n" + e);
             }
         } while (isRun());
 

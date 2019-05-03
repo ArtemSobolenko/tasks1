@@ -5,16 +5,13 @@ import exception.AppException;
 import utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Menu {
-    private Utils utils;
     private TriangleService triangleService;
     private TriangleValidator triangleValidator;
 
-    public Menu(Utils utils, TriangleService triangleService, TriangleValidator triangleValidator) {
-        this.utils = utils;
+    public Menu(TriangleService triangleService, TriangleValidator triangleValidator) {
         this.triangleService = triangleService;
         this.triangleValidator = triangleValidator;
     }
@@ -26,21 +23,24 @@ public class Menu {
         int indexForSideA = 1;
         int indexForSideB = 2;
         int indexForSideC = 3;
+        double triangleArea;
         do {
-            ConsoleHelper.print("Enter the parameters of the triangle in the form: <name>, <side length>, <side length>, <side length>\n");
+            ConsoleHelper.print("Enter the parameters of the triangle in the form: " +
+                    "<name>, <side length>, <side length>, <side length>\n");
             try {
                 params = triangleValidator.validationParams(ConsoleHelper.getDataFromConsole());
                 Triangle triangle = triangleService.createTriangle(params[indexForName],
-                        utils.getDoubleFromParam(params[indexForSideA]),
-                        utils.getDoubleFromParam(params[indexForSideB]),
-                        utils.getDoubleFromParam(params[indexForSideC]));
-                triangle.setArea(triangleService.calculationAreaByHeronFormula(triangle));
+                        Utils.getDoubleFromParam(params[indexForSideA]),
+                        Utils.getDoubleFromParam(params[indexForSideB]),
+                        Utils.getDoubleFromParam(params[indexForSideC]));
+                triangleArea = triangleService.calculationAreaByHeronFormula(triangle);
+                triangle.setArea(triangleArea);
                 triangleList.add(triangle);
             } catch (AppException e) {
-                e.printStackTrace();
+                ConsoleHelper.print("Exception:\n" + e);
             }
         } while (isRun());
-        Collections.sort(triangleList, new TriangleAreaComparator());
+        triangleList.sort(new TriangleAreaComparator());
         triangleService.printTriangles(triangleList);
     }
 

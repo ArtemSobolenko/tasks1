@@ -4,7 +4,7 @@ import exception.AppException;
 
 public class Utils {
 
-    public int getIntegerFromParam(String param) throws AppException {
+    public static int getIntegerFromParam(String param) throws AppException {
         int intParam;
         try {
             intParam = Integer.parseInt(param);
@@ -17,7 +17,7 @@ public class Utils {
         return intParam;
     }
 
-    public double getDoubleFromParam(String param) throws AppException {
+    public static double getDoubleFromParam(String param) throws AppException {
         double doubleParam;
         try {
             doubleParam = Double.parseDouble(param);
