@@ -27,6 +27,29 @@ public class Envelope implements Comparable<Envelope> {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Envelope)) return false;
+
+        Envelope envelope = (Envelope) o;
+
+        if (Double.compare(envelope.getSideA(), getSideA()) != 0) return false;
+        return Double.compare(envelope.getSideB(), getSideB()) == 0;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(getSideA());
+        result = (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getSideB());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
     public int compareTo(Envelope e) {
         double a = this.getSideA();
         double b = this.getSideB();
@@ -36,7 +59,7 @@ public class Envelope implements Comparable<Envelope> {
         if (d <= b && (c <= a || b * (c * c + d * d) >= (2 * c * d * a + (c * c - d * d) * Math.sqrt(c * c + d * d - a * a)))) {
             return 1;
         } else {
-            return -1;
+            return 0;
         }
     }
 }

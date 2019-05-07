@@ -28,7 +28,7 @@ public class Menu {
                 ConsoleHelper.print("Enter sideB for second envelope...");
                 double sideD = Utils.getDoubleFromParam(ConsoleHelper.getDataFromConsole());
                 envelopeTwo = envelopeService.createEnvelope(sideC, sideD);
-                envelopeService.compareEnvelopes(envelopeOne, envelopeTwo);
+                ConsoleHelper.print(envelopeService.compareEnvelopes(envelopeOne, envelopeTwo));
             } catch (AppException e) {
                 ConsoleHelper.print("Exception:\n" + e);
             }

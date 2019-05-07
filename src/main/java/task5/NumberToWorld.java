@@ -29,17 +29,23 @@ public class NumberToWorld {
         String numberLikeString;
 
         if (number == 0) {
-            return stringBuilder.append("ноль").toString();
+            return "ноль";
         }
         if (number < 0) {
+
             String minus = "минус";
             stringBuilder.append(minus).append(" ");
+
             numberOfDigits = String.valueOf(Math.abs(number)).length();
             numberLikeString = getStringFromAbsNumber(numberOfDigits);
+
             return stringBuilder.append(numberLikeString).toString();
+
         } else {
+
             numberOfDigits = String.valueOf(number).length();
             numberLikeString = getStringFromAbsNumber(numberOfDigits);
+
             return stringBuilder.append(numberLikeString).toString();
         }
     }

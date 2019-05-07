@@ -16,4 +16,23 @@ public class ChessDesk {
     public int getHeight() {
         return height;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ChessDesk)) return false;
+
+        ChessDesk chessDesk = (ChessDesk) o;
+
+        if (getWidth() != chessDesk.getWidth()) return false;
+        return getHeight() == chessDesk.getHeight();
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getWidth();
+        result = 31 * result + getHeight();
+        return result;
+    }
 }
