@@ -65,14 +65,16 @@ public class NumberToWorld {
                 return getStringFromTenThousand();
             case 6:
                 return getStringFromHundredThousand();
+            case 7:
+                return getStringFromMillion();
             default:
                 return "This number is not supported!";
         }
     }
 
     private String getStringFromOneToNine() {
-        int index = absNumber;
-        return forFirstTen[index];
+        int[] integers = getNumbers();
+        return forFirstTen[integers[0]];
     }
 
     private String getStringFromTenToNinetyNine() {
@@ -88,30 +90,22 @@ public class NumberToWorld {
     }
 
     private String getStringFromOneHundredToThousand() {
-        int index = absNumber;
-        int ones = index % 10;
-        int tens = (index / 10) % 10;
-        int hundred = index / 100;
-        return forHundreds[hundred] + " " + forTens[tens] + " " + forFirstTen[ones];
+        int[] integers = getNumbers();
+        return forHundreds[integers[0]] + " " + forTens[integers[1]] + " " + forFirstTen[integers[2]];
     }
 
     private String getStringFromThousand() {
-        int index = absNumber;
-        int ones = index % 10;
-        int tens = (index / 10) % 10;
-        int hundred = (index / 100) % 10;
-        int thousands = index / 1000;
-
+        int[] integers = getNumbers();
         String thousandOrThousands;
 
-        if (thousands > 4) {
+        if (integers[0] > 4) {
             thousandOrThousands = " тысяч ";
-        } else if (thousands > 1 && thousands < 4) {
+        } else if (integers[0] > 1 && integers[0] < 4) {
             thousandOrThousands = " тысячи ";
         } else thousandOrThousands = " тысяча ";
 
-        return forFirstTen[thousands] +
-                thousandOrThousands + forHundreds[hundred] + " " + forTens[tens] + " " + forFirstTen[ones];
+        return forFirstTen[integers[0]] +
+                thousandOrThousands + forHundreds[integers[1]] + " " + forTens[integers[2]] + " " + forFirstTen[integers[3]];
     }
 
     private String getStringFromTenThousand() {
@@ -134,16 +128,28 @@ public class NumberToWorld {
     }
 
     private String getStringFromHundredThousand() {
-        int index = absNumber;
-        int ones = index % 10;
-        int tens = (index / 10) % 10;
-        int hundred = (index / 100) % 10;
-        int thousands = index / 1000;
-        int onesT = thousands % 10;
-        int tensT = (thousands / 10) % 10;
-        int hundredT = thousands / 100;
-        return forHundreds[hundredT] + " " + forTens[tensT] + " " + forFirstTen[onesT] + " тысяча " +
-                forHundreds[hundred] + " " + forTens[tens] + " " + forFirstTen[ones];
+        int[] integers = getNumbers();
+
+        return forHundreds[integers[0]] + " " + forTens[integers[1]] + " " + forFirstTen[integers[2]] + " тысяча " +
+                forHundreds[integers[3]] + " " + forTens[integers[4]] + " " + forFirstTen[integers[5]];
+    }
+
+    private String getStringFromMillion() {
+        int[] integers = getNumbers();
+
+        return forFirstTen[integers[0]] + " " + "миллион" + " " + forHundreds[integers[1]] + " " +
+                forTens[integers[2]] + " " + forFirstTen[integers[3]] + " " + "тысяч" + " "
+                + forHundreds[integers[4]] + " " + forTens[integers[5]] + " " + forFirstTen[integers[6]];
+    }
+
+    private int[] getNumbers() {
+        String digits = Integer.toString(absNumber);
+        char[] charArray = digits.toCharArray();
+        int[] integers = new int[charArray.length];
+        for (int i = 0; i < charArray.length; i++) {
+            integers[i] = Character.getNumericValue(charArray[i]);
+        }
+        return integers;
     }
 }
 
