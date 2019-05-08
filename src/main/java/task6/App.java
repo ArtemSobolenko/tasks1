@@ -8,7 +8,7 @@ public class App {
 
         int ticketNumber;
 
-        for (int i = 999_999; i <= 999_999; i++) {
+        for (int i = 1; i <= 999_999; i++) {
             ticketNumber = i;
 
             Ticket ticket = new Ticket(ticketNumber);
@@ -26,6 +26,5 @@ public class App {
                 ConsoleHelper.print("Piter style: Unlucky - " + ticketNumber);
             }
         }
-
     }
 }

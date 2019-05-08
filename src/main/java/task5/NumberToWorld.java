@@ -66,7 +66,7 @@ public class NumberToWorld {
             case 6:
                 return getStringFromHundredThousand();
             default:
-                return "Для этого числа мы еще не готовы!";
+                return "This number is not supported!";
         }
     }
 
